@@ -8,12 +8,19 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    
+    
+    <instrumentation 
+        android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="com.example.show"
+        ></instrumentation>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <uses-library android:name="android.test.runner"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -23,6 +30,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        
+		<!-- 内容提供者 -->        
+        <provider 
+            android:name="com.example.show.provider.SymbolsProvider"
+            android:authorities="com.example.show.provider.SymbolsProvider"
+            ></provider>
+
+        <provider 
+            android:name="com.example.show.provider.StockDailyPriceProvider"
+            android:authorities="com.example.show.provider.StockDailyPriceProvider"
+            ></provider>
+        
+
+        <!-- 服务 -->
+        <service android:name="com.example.show.service.StockObtainService"></service>
+       
     </application>
 
 </manifest>
